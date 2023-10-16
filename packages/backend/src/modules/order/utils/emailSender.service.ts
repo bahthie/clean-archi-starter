@@ -1,5 +1,5 @@
 
-export interface EmailDto {
+export interface SendEmailDto {
     emailsTo: string[];
     emailSubject: string;
     emailContent: string;
@@ -7,7 +7,7 @@ export interface EmailDto {
 
 export default class EmailSenderService{
 
-    async sendEmail(emaildto: EmailDto): Promise<void> {
+    async sendEmail(emaildto: SendEmailDto): Promise<void> {
         emaildto.emailsTo.map(async (mailTo) => {
             const email = new EmailTemplate(mailTo, emaildto.emailSubject, emaildto.emailContent);
             await email.sendEmail();

@@ -1,7 +1,7 @@
 import { Exception } from '../shared/domain/service/util/exception/exceptions.service';
 
 import { ExceptionTypeEnum } from '../shared/domain/const/exception-type.enum';
-import EmailSenderService, { EmailDto } from './../utils/emailSender.service';
+import EmailSenderService, { SendEmailDto } from '../utils/emailSender.service';
 class AddProductToCartService {
     private maxProductsOrder = 10;
 
@@ -26,7 +26,7 @@ class AddProductToCartService {
 
         const order = await this.saveProductInOrder(productFromDb, productQuantity, orderFromDb);
         
-        const emaildto: EmailDto = {
+        const emaildto: SendEmailDto = {
             emailsTo: [order.user.email],
             emailSubject:"Order created",
             emailContent:"Order created successfully",
